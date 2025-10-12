@@ -1,7 +1,4 @@
 
----
-
-### ✅ `README.md` for Your Portfolio
 
 ```
 # 🚀 Pritam's Developer Portfolio
