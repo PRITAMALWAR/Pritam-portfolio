@@ -3,12 +3,12 @@
 
 ### ✅ `README.md` for Your Portfolio
 
-````markdown
+```
 # 🚀 Pritam's Developer Portfolio
 
 Welcome to my personal portfolio website built with ❤️ to showcase my skills, projects, and journey as a **Fullstack MERN Developer**.
 
-![Portfolio Banner](https://your-banner-image-link.com) <!-- Optional: replace with an actual image or remove -->
+![Portfolio Banner](https://your-banner-image-link.com) 
 
 ---
 
