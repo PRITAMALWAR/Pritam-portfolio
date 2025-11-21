@@ -1,60 +1,16 @@
-# 🚀 Pritam's Developer Portfolio
+# React + Vite
 
-Welcome to my personal portfolio website built with ❤️ to showcase my skills, projects, and journey as a **Fullstack MERN Developer**.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-![Portfolio Banner](https://your-banner-image-link.com)
+Currently, two official plugins are available:
 
----
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## 🧑‍💻 About Me
+## React Compiler
 
-Passionate and results-driven **MERN Stack Developer** dedicated to building dynamic, responsive, and user-centric web applications.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-🌐 **Live Preview:**  
-🔗 [Visit Portfolio](https://your-portfolio-link.com)
+## Expanding the ESLint configuration
 
----
-
-## 🧰 Tech Stack
-
-| 🖥 Frontend        | ⚙️ Backend         | 🛢 Database | 🔧 Others                            |
-|-------------------|--------------------|-------------|--------------------------------------|
-| React.js          | Node.js            | MongoDB     | JWT, RESTful APIs, CORS              |
-| Tailwind CSS      | Express.js         | Firebase    | Framer Motion, Chakra UI             |
-| HTML5 / CSS3      |                    |             | Git & GitHub, Netlify, Vercel        |
-
----
-
-## 🌟 Features
-
-- 💻 **Fully Responsive** — seamless across all devices  
-- 🎨 **Modern UI/UX** — crafted with Tailwind CSS & Framer Motion  
-- 🔐 **Authentication & Authorization** — secure and scalable  
-- 🧱 **Modular & Clean Code** — easy to maintain and extend  
-- 🎬 **Smooth Animations** — interactive and engaging user flow  
-- 📬 **Contact Form** — direct reach via email integration  
-
----
-
-## 📸 Project Highlights
-
-A few featured projects proudly presented in the portfolio:
-
-- 🔹 **VermaX** — Full-stack eCommerce Platform  
-- 🔹 **EduTrack** — Course Management System  
-- 🔹 **MovieZone** — Movie Explorer App  
-- 🔹 **GlowNest** — UI-Centric Shopping Website  
-
-👉 Explore them all on the website!
-
----
-
-## 📬 Contact
-
-Feel free to connect with me:
-
-- 📧 **Email:** [thepritamverma@gmail.com](mailto:thepritamverma@gmail.com)  
-- 💼 **LinkedIn:** [Pritam Verma](https://www.linkedin.com/in/pritam-verma-45830328b/)  
-- 🐙 **GitHub:** [PRITAMALWAR](https://github.com/PRITAMALWAR)
-
----
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

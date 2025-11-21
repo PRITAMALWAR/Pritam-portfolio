@@ -1,47 +1,89 @@
-import { ExternalLink, Github } from 'lucide-react';
-import vermaXImg from '../assest/vermaX.png';
-import eduTrackImg from '../assest/EduTrack.png';
-import movieZoneImg from '../assest/moviezone.png';
-import glowNextImg from '../assest/glowNext.png';
+import { ExternalLink, Github } from "lucide-react";
+import vermaXImg from "../assest/vermaX.png";
+import eduTrackImg from "../assest/EduTrack.png";
+import movieZoneImg from "../assest/moviezone.png";
+import glowNextImg from "../assest/glowNext.png";
+import SyncUpimage from "../assest/SyncUp-image.png";
+
 
 const Projects = () => {
   const projects = [
-    {
-      title: 'VermaX',
+     {
+      title: "SyncUp",
       description:
-        'Full-stack e-commerce platform using the MERN stack with secure JWT auth, role-based access, and a real-time cart system. Designed a responsive, engaging UI with Tailwind CSS and Framer Motion, seamlessly integrated via RESTful APIs.',
+        "SyncUp is a feature-packed, real-time chat app combining sleek React UI with a powerful Node.js & Socket.io backend for seamless, secure messaging anywhere.",
+      image: SyncUpimage,
+      tags: [
+        "React",
+        "Context API",
+        "Tailwind CSS",
+        "Lucide React",
+        "Netlify",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Socket.io",
+        "helmet",
+        "multer",
+        "Socket.io + Redis adapter",
+      ],
+
+      liveLink: "https://syncup-web.onrender.com/",
+      githubLink: "https://github.com/PRITAMALWAR/SyncUp",
+    },
+    {
+      title: "VermaX",
+      description:
+        "Full-stack e-commerce platform using the MERN stack with secure JWT auth, role-based access, and a real-time cart system. Designed a responsive, engaging UI with Tailwind CSS and Framer Motion, seamlessly integrated via RESTful APIs.",
       image: vermaXImg,
-      tags: ['React', 'Tailwind CSS', 'Framer Motion', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'JWT', 'CORS'],
-      liveLink: 'https://celadon-tiramisu-301e89.netlify.app/',
-      githubLink: 'https://github.com/PRITAMALWAR/VermaX',
+      tags: [
+        "React",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Mongoose",
+        "JWT",
+        "CORS",
+      ],
+      liveLink: "https://celadon-tiramisu-301e89.netlify.app/",
+      githubLink: "https://github.com/PRITAMALWAR/VermaX",
     },
     {
-      title: 'EduTrack',
+      title: "EduTrack",
       description:
-        'EduTrack, a full-featured course management system using React.js and Tailwind CSS with secure authentication and instructor/student functionalities. Enhanced UX with REST APIs, pagination, sorting, filtering, and a responsive Framer Motion-powered dashboard deployed on Netlify.',
+        "EduTrack, a full-featured course management system using React.js and Tailwind CSS with secure authentication and instructor/student functionalities. Enhanced UX with REST APIs, pagination, sorting, filtering, and a responsive Framer Motion-powered dashboard deployed on Netlify.",
       image: eduTrackImg,
-      tags: ['React.js', 'Tailwind CSS', 'JavaScript', 'Framer Motion', 'Context API'],
-      liveLink: 'https://transcendent-centaur-6f5f65.netlify.app/',
-      githubLink: 'https://github.com/PRITAMALWAR/EduTrack',
+      tags: [
+        "React.js",
+        "Tailwind CSS",
+        "JavaScript",
+        "Framer Motion",
+        "Context API",
+      ],
+      liveLink: "https://transcendent-centaur-6f5f65.netlify.app/",
+      githubLink: "https://github.com/PRITAMALWAR/EduTrack",
     },
     {
-      title: 'MovieZone',
+      title: "MovieZone",
       description:
-        'A Movies App that lets users search, filter by genre, and sort movies by title or release year. It uses HTML, CSS, JavaScript, JSON, and for a responsive, interactive experience.',
+        "A Movies App that lets users search, filter by genre, and sort movies by title or release year. It uses HTML, CSS, JavaScript, JSON, and for a responsive, interactive experience.",
       image: movieZoneImg,
-      tags: ['HTML', 'CSS', 'JavaScript', 'JSON', 'API'],
-      liveLink: 'https://prismatic-unicorn-1614a0.netlify.app/',
-      githubLink: 'https://github.com/PRITAMALWAR/MovieZone',
+      tags: ["HTML", "CSS", "JavaScript", "JSON", "API"],
+      liveLink: "https://prismatic-unicorn-1614a0.netlify.app/",
+      githubLink: "https://github.com/PRITAMALWAR/MovieZone",
     },
     {
-      title: 'GlowNest-Ecom',
+      title: "GlowNest-Ecom",
       description:
-        'This is a modern eCommerce platform built with ReactJS, Tailwind CSS, and Chakra UI, offering a fully visually appealing shopping experience.',
+        "This is a modern eCommerce platform built with ReactJS, Tailwind CSS, and Chakra UI, offering a fully visually appealing shopping experience.",
       image: glowNextImg,
-      tags: ['React', 'Context API', 'Tailwind CSS', 'Netlify'],
-      liveLink: 'https://glittery-donut-e66996.netlify.app/',
-      githubLink: 'https://github.com/PRITAMALWAR/GlowNest-Ecom',
+      tags: ["React", "Context API", "Tailwind CSS", "Netlify"],
+      liveLink: "https://glittery-donut-e66996.netlify.app/",
+      githubLink: "https://github.com/PRITAMALWAR/GlowNest-Ecom",
     },
+   
   ];
 
   return (
