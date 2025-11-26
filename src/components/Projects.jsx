@@ -4,11 +4,11 @@ import eduTrackImg from "../assest/EduTrack.png";
 import movieZoneImg from "../assest/moviezone.png";
 import glowNextImg from "../assest/glowNext.png";
 import SyncUpimage from "../assest/SyncUp-image.png";
-
+import DocDeskImage from "../assest/DocDeskImage.png";
 
 const Projects = () => {
   const projects = [
-     {
+    {
       title: "SyncUp",
       description:
         "SyncUp is a feature-packed, real-time chat app combining sleek React UI with a powerful Node.js & Socket.io backend for seamless, secure messaging anywhere.",
@@ -30,6 +30,27 @@ const Projects = () => {
 
       liveLink: "https://syncup-web.onrender.com/",
       githubLink: "https://github.com/PRITAMALWAR/SyncUp",
+    },
+    {
+      title: "DocDesk",
+      description:
+        "DocDesk is a full-stack doctor appointment booking platform built with the MERN stack, connecting patients with doctors for seamless appointment management, medical history tracking, and feedback collection.",
+      image: DocDeskImage,
+      tags: [
+        "React",
+        "Context API",
+        "Tailwind CSS",
+        "React Router",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Mongoose",
+        "JWT",
+        "bcryptjs",
+        "Render",
+      ],
+      liveLink: "https://docdesk-frontend.onrender.com/",
+      githubLink: "https://github.com/PRITAMALWAR/DocDesk",
     },
     {
       title: "VermaX",
@@ -68,22 +89,27 @@ const Projects = () => {
     {
       title: "MovieZone",
       description:
-        "A Movies App that lets users search, filter by genre, and sort movies by title or release year. It uses HTML, CSS, JavaScript, JSON, and for a responsive, interactive experience.",
+        "fully responsive and feature-rich movie discovery platform built with vanilla HTML, CSS, and JavaScript. Includes multi-page navigation, real-time search, advanced genre filtering, multiple sorting options, dynamic pagination, and a persistent favorites system powered by LocalStorage. Features a mobile-first UI, dynamic content rendering, and clean modern design.",
       image: movieZoneImg,
-      tags: ["HTML", "CSS", "JavaScript", "JSON", "API"],
+      tags: ["HTML", "CSS", "JavaScript", "JSON", "LocalStorage"],
       liveLink: "https://prismatic-unicorn-1614a0.netlify.app/",
       githubLink: "https://github.com/PRITAMALWAR/MovieZone",
     },
     {
-      title: "GlowNest-Ecom",
+      title: "GlowNest - E-Commerce Platform",
       description:
-        "This is a modern eCommerce platform built with ReactJS, Tailwind CSS, and Chakra UI, offering a fully visually appealing shopping experience.",
+        "GlowNest is a fully featured modern e-commerce platform built with React, React Router, Tailwind CSS, and the Context API. It includes user authentication, product browsing, a complete cart system with LocalStorage persistence, toast notifications, and a clean, responsive UI.",
       image: glowNextImg,
-      tags: ["React", "Context API", "Tailwind CSS", "Netlify"],
+      tags: [
+        "React",
+        "Context API",
+        "React Router",
+        "Tailwind CSS",
+        "LocalStorage",
+      ],
       liveLink: "https://glittery-donut-e66996.netlify.app/",
       githubLink: "https://github.com/PRITAMALWAR/GlowNest-Ecom",
     },
-   
   ];
 
   return (
