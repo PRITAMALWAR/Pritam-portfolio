@@ -65,7 +65,7 @@ const Navbar = () => {
             ))}
 
             <a
-              href="https://drive.google.com/file/d/1mmIm05qMj1MWk0ZIsz70zYdbGydh6YZN/view?usp=sharing"
+              href="https://drive.google.com/file/d/1LTfljuU4qDYnivizXgucWpMM4mUlod9S/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-2 rounded-full font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:shadow-lg transform hover:scale-105 transition-all duration-300"
