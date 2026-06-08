@@ -5,6 +5,8 @@ import movieZoneImg from "../assest/moviezone.png";
 import glowNextImg from "../assest/glowNext.png";
 import SyncUpimage from "../assest/SyncUp-image.png";
 import DocDeskImage from "../assest/DocDeskImage.png";
+import BlogsImage from "../assest/blogsHub.png";
+
 
 const Projects = () => {
   const projects = [
@@ -85,6 +87,15 @@ const Projects = () => {
       ],
       liveLink: "https://transcendent-centaur-6f5f65.netlify.app/",
       githubLink: "https://github.com/PRITAMALWAR/EduTrack",
+    },
+    {
+      title: "BlogHub",
+      description:
+        "Built a full-stack Blog Platform using React.js, Node.js, Express.js, and MongoDB with secure JWT and Google OAuth authentication.",
+      image: BlogsImage,
+      tags: ["React.js","Node.js","Express.js","MongoDB","Mongoose","JWT","Google OAuth","Passport.js","Tailwind CSS","Axios","React Router DOM ","REST API"],
+      liveLink: "https://bloghub-1-w50n.onrender.com/",
+      githubLink: "https://github.com/PRITAMALWAR/BlogHub",
     },
     {
       title: "MovieZone",
