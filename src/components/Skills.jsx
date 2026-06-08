@@ -85,10 +85,14 @@
 const Skills = () => {
   const skills = [
     { name: 'React.js', gradient: 'from-pink-500 to-yellow-500' },
+    { name: 'Next.js', gradient: 'from-red-500 to-yellow-500' },
     { name: 'Node.js', gradient: 'from-green-500 to-emerald-500' },
     { name: 'Express.js', gradient: 'from-gray-600 to-gray-800' },
+    { name: "SQL", gradient: 'from-gray-600 to-gray-800' },
     { name: 'MongoDB', gradient: 'from-green-700 to-lime-500' },
+    { name: 'Postgreql', gradient: 'from-green-700 to-lime-500' },
     { name: 'JavaScript (ES6+)', gradient: 'from-yellow-400 to-orange-500' },
+    { name: 'Typescript', gradient: 'from-sky-400 to-cyan-500'},
     { name: 'HTML5', gradient: 'from-red-500 to-orange-600' },
     { name: 'CSS3', gradient: 'from-blue-500 to-indigo-500' },
     { name: 'Tailwind CSS', gradient: 'from-sky-400 to-cyan-500' },
