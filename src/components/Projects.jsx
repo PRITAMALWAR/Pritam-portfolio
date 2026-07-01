@@ -6,6 +6,7 @@ import glowNextImg from "../assest/glowNext.png";
 import SyncUpimage from "../assest/SyncUp-image.png";
 import DocDeskImage from "../assest/DocDeskImage.png";
 import BlogsImage from "../assest/blogsHub.png";
+import crmDashboardImg from "../assest/crmDashboardImg.png";
 
 
 const Projects = () => {
@@ -74,6 +75,25 @@ const Projects = () => {
       githubLink: "https://github.com/PRITAMALWAR/VermaX",
     },
     {
+      title: "CRM System Dashboard",
+      description:
+        "A modern and responsive Customer Relationship Management (CRM) Dashboard built with React.js, Vite, Tailwind CSS, and shadcn/ui. It provides complete customer management with CRUD operations, search, filtering, pagination, analytics charts, and Local Storage persistence, delivering a clean and responsive user experience without requiring a backend.",
+      image: crmDashboardImg, // import your CRM project image
+      tags: [
+        "React.js",
+        "Vite",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "JavaScript",
+        "Context API",
+        "React Router",
+        "Recharts",
+        "Local Storage",
+      ],
+      liveLink: "https://crm-dashboard-system.netlify.app/",
+      githubLink: "https://github.com/PRITAMALWAR/crm-dashboard",
+    },
+    {
       title: "EduTrack",
       description:
         "EduTrack, a full-featured course management system using React.js and Tailwind CSS with secure authentication and instructor/student functionalities. Enhanced UX with REST APIs, pagination, sorting, filtering, and a responsive Framer Motion-powered dashboard deployed on Netlify.",
@@ -93,7 +113,20 @@ const Projects = () => {
       description:
         "Built a full-stack Blog Platform using React.js, Node.js, Express.js, and MongoDB with secure JWT and Google OAuth authentication.",
       image: BlogsImage,
-      tags: ["React.js","Node.js","Express.js","MongoDB","Mongoose","JWT","Google OAuth","Passport.js","Tailwind CSS","Axios","React Router DOM ","REST API"],
+      tags: [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Mongoose",
+        "JWT",
+        "Google OAuth",
+        "Passport.js",
+        "Tailwind CSS",
+        "Axios",
+        "React Router DOM ",
+        "REST API",
+      ],
       liveLink: "https://bloghub-1-w50n.onrender.com/",
       githubLink: "https://github.com/PRITAMALWAR/BlogHub",
     },
