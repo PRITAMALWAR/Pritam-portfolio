@@ -976,7 +976,7 @@ const Hero = () => {
             <div className="hero-eyebrow inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-4 py-2 shadow-sm backdrop-blur">
               <span className="hero-status-dot" />
               <span className="text-xs font-semibold tracking-wide text-gray-700 sm:text-sm">
-                FULLSTACK DEVELOPER
+                AI-powered solutions
               </span>
               <Sparkles size={15} className="text-blue-500" />
             </div>
@@ -986,10 +986,10 @@ const Hero = () => {
                 Hi there, I'm
               </p>
 
-              <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-gray-950 sm:text-6xl lg:text-7xl">
-                Pritam
-                <span className="block bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text pb-2 text-transparent">
-                  Verma.
+              <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-red-500 sm:text-5xl lg:text-6xl">
+                Pritam Verma
+                <span className="block bg-gradient-to-r lg:text-xl from-blue-600 via-blue-500 to-cyan-500 bg-clip-text pb-2 text-transparent">
+                FULLSTACK DEVELOPER
                 </span>
               </h1>
 

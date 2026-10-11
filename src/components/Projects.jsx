@@ -78,7 +78,7 @@ const Projects = () => {
       title: "CRM System Dashboard",
       description:
         "A modern and responsive Customer Relationship Management (CRM) Dashboard built with React.js, Vite, Tailwind CSS, and shadcn/ui. It provides complete customer management with CRUD operations, search, filtering, pagination, analytics charts, and Local Storage persistence, delivering a clean and responsive user experience without requiring a backend.",
-      image: crmDashboardImg, // import your CRM project image
+      image: crmDashboardImg, 
       tags: [
         "React.js",
         "Vite",

@@ -30,6 +30,7 @@ const About = () => {
       icon: Rocket,
       title: "Raj Rishi Bhartrihari Matsya University (RRBMU)",
       description: "Bachelor of Arts",
+      grade: "Grade: First Division ",
       duration: "2021 - 2024",
       category: "UNDERGRADUATE",
     },
@@ -38,8 +39,16 @@ const About = () => {
       title: "Rajesh Sr. Sec. School, Ramgarh (301026), Alwar",
       description: "12th Mathematics (Science Stream – PCM)",
       grade: "Grade: 92.20%",
-      duration: "Apr 2020 - Jun 2021",
+      duration: "2021",
       category: "SENIOR SECONDARY",
+    },
+     {
+      icon: Users,
+      title: "Saini Sec. School, Ramgarh (301026), Alwar",
+      description: "10th",
+      grade: "Grade: 77.17%",
+      duration: "2019",
+      category: "SECONDARY",
     },
   ];
 
