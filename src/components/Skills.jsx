@@ -1,4 +1,6 @@
+
 import { useState } from "react";
+
 import {
   FaReact,
   FaNodeJs,
@@ -10,6 +12,8 @@ import {
   FaGoogle,
   FaBrain,
   FaRobot,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 
 import {
@@ -36,7 +40,7 @@ const skillGroups = [
     title: "Frontend Development",
     shortTitle: "Frontend",
     icon: FaReact,
-    color: "text-cyan-500",
+    color: "text-cyan-600",
     activeColor: "border-cyan-300 bg-cyan-50",
     badge: "bg-cyan-100 text-cyan-700",
     skills: [
@@ -57,7 +61,7 @@ const skillGroups = [
     title: "Backend Development",
     shortTitle: "Backend",
     icon: FaNodeJs,
-    color: "text-emerald-500",
+    color: "text-emerald-600",
     activeColor: "border-emerald-300 bg-emerald-50",
     badge: "bg-emerald-100 text-emerald-700",
     skills: [
@@ -104,7 +108,7 @@ const skillGroups = [
     title: "Tools & Productivity",
     shortTitle: "Tools",
     icon: FaGitAlt,
-    color: "text-orange-500",
+    color: "text-orange-600",
     activeColor: "border-orange-300 bg-orange-50",
     badge: "bg-orange-100 text-orange-700",
     skills: [
@@ -118,88 +122,94 @@ const skillGroups = [
   },
 ];
 
-function SkillCard({ group, active, onClick }) {
-  const GroupIcon = group.icon;
+const allSkills = skillGroups.flatMap((group) => group.skills);
+
+const allGroup = {
+  title: "All Technical Skills",
+  shortTitle: "All Skills",
+  icon: FaBrain,
+  color: "text-indigo-600",
+  activeColor: "border-indigo-300 bg-indigo-50",
+  badge: "bg-indigo-100 text-indigo-700",
+  skills: allSkills,
+};
+
+const categories = [allGroup, ...skillGroups];
+
+/* -------------------- COMPACT SKILL CARD -------------------- */
+
+function SkillChip({ skill, compact = false }) {
+  const [name, Icon, iconColor, bgColor, borderColor] = skill;
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`w-full rounded-2xl border p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
-        active
-          ? `${group.activeColor} border-2 shadow-md`
-          : "border-blue-100 bg-white hover:border-blue-200"
+    <div
+      title={name}
+      className={`skill-chip group flex min-w-0 items-center rounded-xl border ${borderColor} ${bgColor} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
+        compact
+          ? "justify-center gap-2 px-2 py-2"
+          : "gap-2 px-2.5 py-2"
       }`}
     >
-      <div className="mb-3 flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-100 bg-white shadow-sm">
-          <GroupIcon className={`text-xl ${group.color}`} />
-        </div>
+      <span
+        className={`flex shrink-0 items-center justify-center rounded-lg bg-white shadow-sm ${
+          compact ? "h-7 w-7" : "h-8 w-8"
+        }`}
+      >
+        <Icon className={`${iconColor} ${compact ? "text-base" : "text-lg"}`} />
+      </span>
 
-        <div className="min-w-0 flex-1">
-          <h3 className="text-sm font-bold text-slate-800 sm:text-base">
-            {group.title}
-          </h3>
-          <p className="mt-0.5 text-[11px] text-slate-500">
-            {active ? "Currently exploring" : "Click to rotate these skills"}
-          </p>
-        </div>
-
-        <span
-          className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold ${group.badge}`}
-        >
-          {group.skills.length} Skills
-        </span>
-      </div>
-
-      <div className="flex flex-wrap gap-2">
-        {group.skills.map(([name, Icon, iconColor, bgColor, borderColor]) => (
-          <span
-            key={name}
-            className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-2 text-[11px] font-semibold text-slate-700 transition-colors ${bgColor} ${borderColor}`}
-          >
-            <Icon className={`shrink-0 text-sm ${iconColor}`} />
-            {name}
-          </span>
-        ))}
-      </div>
-    </button>
+      <span
+        className={`min-w-0 truncate font-bold text-slate-700 ${
+          compact ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"
+        }`}
+      >
+        {name}
+      </span>
+    </div>
   );
 }
 
+/* -------------------- ANIMATED ORBIT -------------------- */
+
 function SkillsOrbit({ group }) {
-  const count = group.skills.length;
   const GroupIcon = group.icon;
+  const count = group.skills.length;
+
+  const orbitItems = group.skills.map((skill, index) => ({
+    skill,
+    angle: (360 / count) * index,
+    radius: count <= 3 ? 35 : count <= 6 ? 39 : 43,
+  }));
 
   return (
-    <div className="relative mx-auto flex aspect-square w-full max-w-[430px] items-center justify-center">
-      {/* Orbit rings */}
+    <div className="orbit-stage relative mx-auto flex aspect-square w-full max-w-[390px] items-center justify-center">
       <div className="pointer-events-none absolute h-[88%] w-[88%] rounded-full border border-blue-200" />
-      <div className="pointer-events-none absolute h-[64%] w-[64%] rounded-full border border-cyan-300" />
-      <div className="pointer-events-none absolute h-[40%] w-[40%] rounded-full border border-indigo-200" />
+      <div className="pointer-events-none absolute h-[66%] w-[66%] rounded-full border border-cyan-300" />
+      <div className="pointer-events-none absolute h-[43%] w-[43%] rounded-full border border-indigo-200" />
+      <div className="pointer-events-none absolute h-[45%] w-[45%] rounded-full bg-blue-200/30 blur-3xl" />
 
-      {/* Each category's skill icons */}
       <div key={group.title} className="skills-orbit absolute inset-0">
-        {group.skills.map((skill, index) => {
+        {orbitItems.map(({ skill, angle, radius }, index) => {
           const [name, Icon, iconColor, bgColor, borderColor] = skill;
 
           return (
             <div
-              key={name}
+              key={`${name}-${index}`}
               className="skills-orbit-position"
               style={{
-                "--angle": `${(360 / count) * index}deg`,
+                "--angle": `${angle}deg`,
+                "--orbit-top": `${50 - radius}%`,
               }}
             >
               <div className="skills-orbit-counter">
                 <div
                   title={name}
-                  className={`flex h-10 w-10 items-center justify-center rounded-xl border shadow-md sm:h-12 sm:w-12 ${bgColor} ${borderColor}`}
+                  className={`orbit-icon flex items-center justify-center rounded-xl border shadow-md ${bgColor} ${borderColor}`}
                 >
-                  <Icon className={`text-xl sm:text-2xl ${iconColor}`} />
+                  <Icon className={`orbit-icon-symbol ${iconColor}`} />
                 </div>
 
-                <span className="max-w-[84px] rounded-md bg-white/95 px-1.5 py-1 text-center text-[9px] font-bold leading-tight text-slate-700 shadow-sm sm:max-w-[100px] sm:text-[10px]">
+                <span className="orbit-skill-label rounded-md border border-white bg-white/95 px-1.5 py-1 text-center font-bold text-slate-700 shadow-sm">
                   {name}
                 </span>
               </div>
@@ -208,86 +218,237 @@ function SkillsOrbit({ group }) {
         })}
       </div>
 
-      {/* Center globe */}
-      <div className="relative z-10 flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-indigo-400 bg-gradient-to-br from-blue-500 to-violet-500 text-center text-white shadow-[0_0_40px_rgba(79,70,229,0.3)] sm:h-36 sm:w-36">
-        <GroupIcon className="mb-2 text-3xl" />
-
-        <span className="max-w-[112px] px-2 text-sm font-extrabold">
-          {group.shortTitle || group.title}
+      <div className="orbit-center relative z-10 flex flex-col items-center justify-center rounded-full border-4 border-indigo-400 bg-gradient-to-br from-blue-500 to-violet-500 text-center text-white shadow-[0_0_35px_rgba(79,70,229,0.28)]">
+        <GroupIcon className="orbit-center-icon mb-1" />
+        <span className="max-w-[105px] px-1 text-sm font-extrabold">
+          {group.shortTitle}
         </span>
-
-        <span className="mt-1 text-[10px]">
-          {count} Skills
-        </span>
+        <span className="mt-1 text-[10px]">{count} Skills</span>
       </div>
     </div>
   );
 }
 
+/* -------------------- MAIN COMPONENT -------------------- */
+
 export default function Skills() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const selectedGroup = skillGroups[selectedIndex];
+
+  const selectedGroup = categories[selectedIndex];
+  const SelectedIcon = selectedGroup.icon;
+  const showAllSkills = selectedIndex === 0;
+
+  const goPrevious = () => {
+    setSelectedIndex((current) =>
+      current === 0 ? categories.length - 1 : current - 1
+    );
+  };
+
+  const goNext = () => {
+    setSelectedIndex((current) =>
+      current === categories.length - 1 ? 0 : current + 1
+    );
+  };
 
   return (
     <section
       id="skills"
-      className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 px-4 py-16 sm:px-6 lg:px-10"
+      className="overflow-x-clip bg-gradient-to-br from-blue-50 via-white to-cyan-50 px-3 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-9"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 text-center">
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-cyan-600">
-            Explore My Stack
-          </p>
+        {/* Heading */}
+        <div className="mb-5 text-center sm:mb-6">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm sm:text-xs">
+            <FaBrain />
+            My Technical Toolkit
+          </span>
 
-          <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            Technical Skills
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+            Skills &{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+              Technologies
+            </span>
           </h2>
 
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-600">
-            Technologies and tools I use to build modern web applications and
-            AI-powered experiences.
+          <p className="mx-auto mt-2 max-w-xl text-xs leading-5 text-slate-500 sm:text-sm">
+            Explore the technologies I use to build modern web applications
+            and AI-powered experiences.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
-          {/* Skill categories */}
-          <div className="flex flex-col gap-3">
-            {skillGroups.map((group, index) => (
-              <SkillCard
+        {/* Category tabs */}
+        <div className="mb-5 flex flex-wrap justify-center gap-2">
+          {categories.map((group, index) => {
+            const CategoryIcon = group.icon;
+            const active = selectedIndex === index;
+
+            return (
+              <button
                 key={group.title}
-                group={group}
-                active={selectedIndex === index}
+                type="button"
                 onClick={() => setSelectedIndex(index)}
-              />
-            ))}
-          </div>
+                aria-pressed={active}
+                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-[11px] font-bold transition sm:px-4 sm:text-xs ${
+                  active
+                    ? "border-indigo-500 bg-indigo-600 text-white shadow-md shadow-indigo-200"
+                    : "border-blue-100 bg-white/90 text-slate-600 hover:border-indigo-300 hover:bg-indigo-50"
+                }`}
+              >
+                <CategoryIcon className="text-sm" />
+                {group.shortTitle}
+                <span
+                  className={`rounded-full px-1.5 py-0.5 text-[9px] ${
+                    active
+                      ? "bg-white/20 text-white"
+                      : "bg-slate-100 text-slate-500"
+                  }`}
+                >
+                  {group.skills.length}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-          {/* Animated orbit */}
-          <div className="min-w-0 lg:sticky lg:top-24">
-            <div className="mb-5 text-center">
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan-600">
-                Explore My Stack
-              </p>
+        {/* ALL SKILLS: show every logo and name together */}
+        {showAllSkills ? (
+          <div className="all-skills-panel rounded-2xl border border-white/90 bg-white/75 p-3 shadow-[0_10px_35px_rgba(59,130,246,0.08)] backdrop-blur-sm sm:p-5">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-indigo-200 bg-indigo-50 text-indigo-600">
+                  <FaBrain className="text-lg" />
+                </span>
+                <div>
+                  <h3 className="text-sm font-extrabold text-slate-800 sm:text-base">
+                    All Technical Skills
+                  </h3>
+                  <p className="text-[10px] text-slate-500 sm:text-xs">
+                    All logos and names in one place
+                  </p>
+                </div>
+              </div>
 
-              <h3 className="mt-2 text-xl font-extrabold text-slate-900 sm:text-2xl">
-                {selectedGroup.title}
-              </h3>
-
-              <p className="mt-1 text-xs text-slate-500">
-                {selectedGroup.skills.length} skills orbiting the globe
-              </p>
+              <span className="rounded-full bg-indigo-100 px-3 py-1.5 text-[10px] font-extrabold text-indigo-700">
+                {allSkills.length} Skills
+              </span>
             </div>
 
-            <SkillsOrbit group={selectedGroup} />
+            {/* All 34 skills visible in a compact grid */}
+            <div className="all-skills-grid grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5 md:grid-cols-4 lg:grid-cols-6">
+              {allSkills.map((skill, index) => (
+                <div
+                  key={`${skill[0]}-${index}`}
+                  className="all-skill-item"
+                  style={{ animationDelay: `${index * 15}ms` }}
+                >
+                  <SkillChip skill={skill} compact />
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+              <span className="text-[10px] text-slate-400">
+                5 skill categories
+              </span>
+
+              <button
+                type="button"
+                onClick={goNext}
+                className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-3 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-indigo-700"
+              >
+                Explore Categories
+                <FaChevronRight className="text-[10px]" />
+              </button>
+            </div>
           </div>
-        </div>
+        ) : (
+          /* INDIVIDUAL CATEGORY: compact list + orbit */
+          <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:gap-6 xl:grid-cols-2 xl:gap-10">
+            <div className="min-w-0 rounded-2xl border border-white/90 bg-white/75 p-3 shadow-[0_10px_35px_rgba(59,130,246,0.08)] backdrop-blur-sm sm:p-5">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="flex min-w-0 items-center gap-3">
+                  <div
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${selectedGroup.activeColor}`}
+                  >
+                    <SelectedIcon className={`text-xl ${selectedGroup.color}`} />
+                  </div>
+
+                  <div className="min-w-0">
+                    <h3 className="truncate text-sm font-extrabold text-slate-800 sm:text-base">
+                      {selectedGroup.title}
+                    </h3>
+                    <p className="mt-0.5 text-[10px] text-slate-500 sm:text-xs">
+                      Skills in this category
+                    </p>
+                  </div>
+                </div>
+
+                <span
+                  className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-extrabold ${selectedGroup.badge}`}
+                >
+                  {selectedGroup.skills.length} skills
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
+                {selectedGroup.skills.map((skill) => (
+                  <SkillChip key={skill[0]} skill={skill} />
+                ))}
+              </div>
+
+              <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+                <button
+                  type="button"
+                  onClick={goPrevious}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 transition hover:border-indigo-300 hover:bg-indigo-50"
+                >
+                  <FaChevronLeft className="text-[10px]" />
+                  Previous
+                </button>
+
+                <span className="text-[10px] font-semibold text-slate-400">
+                  {selectedIndex + 1} / {categories.length}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={goNext}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100"
+                >
+                  Next
+                  <FaChevronRight className="text-[10px]" />
+                </button>
+              </div>
+            </div>
+
+            <div className="min-w-0">
+              <div className="mb-1 text-center">
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-cyan-600 sm:text-xs">
+                  Interactive Skill Universe
+                </p>
+                <h3 className="mt-1 text-lg font-extrabold text-slate-900 sm:text-xl">
+                  {selectedGroup.shortTitle} Orbit
+                </h3>
+                <p className="mt-1 text-[10px] text-slate-500 sm:text-xs">
+                  {selectedGroup.skills.length} technologies in this category
+                </p>
+              </div>
+
+              <SkillsOrbit group={selectedGroup} />
+
+              <p className="mt-1 text-center text-[10px] text-slate-500">
+                Animated icons with skill names
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       <style>{`
         .skills-orbit {
           border-radius: 50%;
           transform-origin: center center;
-          animation: skills-earth-rotation 18s linear infinite;
+          animation: skills-earth-rotation 30s linear infinite;
           will-change: transform;
         }
 
@@ -299,45 +460,663 @@ export default function Skills() {
 
         .skills-orbit-counter {
           position: absolute;
-          top: 6%;
+          top: var(--orbit-top, 9%);
           left: 50%;
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 3px;
           transform: translate(-50%, -50%);
-          animation: skills-icon-counter-rotation 18s linear infinite;
+          animation: skills-icon-counter-rotation 30s linear infinite;
           will-change: transform;
         }
 
+        .orbit-icon {
+          width: 36px;
+          height: 36px;
+        }
+
+        .orbit-icon-symbol {
+          font-size: 18px;
+        }
+
+        .orbit-skill-label {
+          max-width: 100px;
+          font-size: 9px;
+          line-height: 1.15;
+          white-space: nowrap;
+        }
+
+        .orbit-center {
+          width: 124px;
+          height: 124px;
+        }
+
+        .orbit-center-icon {
+          font-size: 26px;
+        }
+
+        .skill-chip {
+          min-height: 40px;
+        }
+
+        .all-skills-grid .skill-chip {
+          min-height: 42px;
+        }
+
+        .all-skill-item {
+          min-width: 0;
+          animation: skill-item-appear 250ms ease both;
+        }
+
         @keyframes skills-earth-rotation {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
 
         @keyframes skills-icon-counter-rotation {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+
+        @keyframes skill-item-appear {
           from {
-            transform: translate(-50%, -50%) rotate(0deg);
+            opacity: 0;
+            transform: translateY(4px);
           }
           to {
-            transform: translate(-50%, -50%) rotate(-360deg);
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .orbit-stage {
+            max-width: 390px;
+          }
+
+          .all-skills-panel {
+            padding: 16px 20px;
+          }
+
+          .all-skills-grid {
+            gap: 8px;
+          }
+
+          .all-skills-grid .skill-chip {
+            min-height: 40px;
+            padding: 6px 8px;
+            gap: 7px;
+          }
+
+          .all-skills-grid .skill-chip > span:first-child {
+            width: 27px;
+            height: 27px;
+          }
+        }
+
+        @media (max-width: 639px) {
+          .orbit-stage {
+            max-width: 330px;
+          }
+
+          .orbit-icon {
+            width: 29px;
+            height: 29px;
+            border-radius: 8px;
+          }
+
+          .orbit-icon-symbol {
+            font-size: 15px;
+          }
+
+          .orbit-skill-label {
+            max-width: 78px;
+            padding: 3px 4px;
+            font-size: 7px;
+            white-space: normal;
+            overflow-wrap: anywhere;
+          }
+
+          .skills-orbit-counter {
+            gap: 2px;
+          }
+
+          .orbit-center {
+            width: 98px;
+            height: 98px;
+            border-width: 3px;
+          }
+
+          .orbit-center-icon {
+            font-size: 21px;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .orbit-stage {
+            max-width: 300px;
+          }
+
+          .orbit-icon {
+            width: 26px;
+            height: 26px;
+          }
+
+          .orbit-icon-symbol {
+            font-size: 13px;
+          }
+
+          .orbit-skill-label {
+            max-width: 68px;
+            font-size: 7px;
+          }
+
+          .orbit-center {
+            width: 86px;
+            height: 86px;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .skills-orbit,
           .skills-orbit-counter {
-            animation-duration: 60s;
+            animation-duration: 90s;
+          }
+
+          .all-skill-item {
+            animation: none;
           }
         }
+
+
+/* MOBILE ONLY — compact HR-friendly skill dashboard */
+@media (max-width: 639px) {
+  #skills {
+    padding: 12px 8px !important;
+  }
+
+  #skills .mx-auto.max-w-7xl > div:first-child {
+    margin-bottom: 10px;
+  }
+
+  #skills h2 {
+    font-size: 1.65rem;
+    line-height: 1.1;
+    margin-top: 6px;
+  }
+
+  #skills .all-skills-panel {
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  #skills .all-skills-panel > div:first-child {
+    margin-bottom: 8px;
+  }
+
+  #skills .all-skills-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  #skills .all-skills-grid .skill-chip {
+    min-height: 0;
+    height: 48px;
+    padding: 4px 2px;
+    gap: 3px;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  #skills .all-skills-grid .skill-chip > span:first-child {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+  }
+
+  #skills .all-skills-grid .skill-chip > span:first-child svg {
+    font-size: 14px;
+  }
+
+  #skills .all-skills-grid .skill-chip > span:last-child {
+    display: block;
+    width: 100%;
+    font-size: 8px;
+    line-height: 1.1;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  #skills .all-skills-panel .mb-4 {
+    margin-bottom: 8px;
+  }
+
+  #skills .all-skills-panel .mt-4 {
+    margin-top: 8px;
+  }
+
+  #skills .all-skills-panel .pt-3 {
+    padding-top: 7px;
+  }
+
+  #skills .all-skills-panel .h-9.w-9 {
+    width: 30px;
+    height: 30px;
+  }
+
+  #skills .all-skills-panel .h-9.w-9 svg {
+    font-size: 15px;
+  }
+
+  #skills .all-skills-panel .rounded-full {
+    white-space: nowrap;
+  }
+
+  #skills .all-skills-panel > div:last-child button {
+    padding: 6px 9px;
+    font-size: 10px;
+  }
+
+  #skills .all-skills-panel .text-\[10px\] {
+    font-size: 9px;
+  }
+
+  #skills .all-skills-panel .text-sm {
+    font-size: 12px;
+  }
+
+  #skills .all-skills-panel .text-base {
+    font-size: 12px;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 360px) {
+  #skills {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+
+  #skills .all-skills-grid {
+    gap: 4px;
+  }
+
+  #skills .all-skills-grid .skill-chip {
+    height: 45px;
+  }
+
+  #skills .all-skills-grid .skill-chip > span:last-child {
+    font-size: 7px;
+  }
+}
+
       `}</style>
     </section>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useState } from "react";
+// import {
+//   FaReact,
+//   FaNodeJs,
+//   FaHtml5,
+//   FaCss3Alt,
+//   FaJs,
+//   FaGitAlt,
+//   FaMicrosoft,
+//   FaGoogle,
+//   FaBrain,
+//   FaRobot,
+// } from "react-icons/fa";
+
+// import {
+//   SiNextdotjs,
+//   SiExpress,
+//   SiMongodb,
+//   SiPostgresql,
+//   SiTypescript,
+//   SiTailwindcss,
+//   SiChakraui,
+//   SiRedux,
+//   SiJsonwebtokens,
+//   SiFramer,
+//   SiPostman,
+//   SiFirebase,
+//   SiPython,
+//   SiGmail,
+// } from "react-icons/si";
+
+// import { TbApi } from "react-icons/tb";
+
+// const skillGroups = [
+//   {
+//     title: "Frontend Development",
+//     shortTitle: "Frontend",
+//     icon: FaReact,
+//     color: "text-cyan-500",
+//     activeColor: "border-cyan-300 bg-cyan-50",
+//     badge: "bg-cyan-100 text-cyan-700",
+//     skills: [
+//       ["React.js", FaReact, "text-cyan-500", "bg-cyan-50", "border-cyan-200"],
+//       ["Next.js", SiNextdotjs, "text-slate-800", "bg-slate-100", "border-slate-200"],
+//       ["JavaScript", FaJs, "text-yellow-600", "bg-yellow-50", "border-yellow-200"],
+//       ["TypeScript", SiTypescript, "text-blue-600", "bg-blue-50", "border-blue-200"],
+//       ["HTML5", FaHtml5, "text-orange-600", "bg-orange-50", "border-orange-200"],
+//       ["CSS3", FaCss3Alt, "text-blue-500", "bg-blue-50", "border-blue-200"],
+//       ["Tailwind CSS", SiTailwindcss, "text-cyan-500", "bg-cyan-50", "border-cyan-200"],
+//       ["Chakra UI", SiChakraui, "text-teal-600", "bg-teal-50", "border-teal-200"],
+//       ["Redux", SiRedux, "text-violet-600", "bg-violet-50", "border-violet-200"],
+//       ["Context API", TbApi, "text-indigo-600", "bg-indigo-50", "border-indigo-200"],
+//       ["Framer Motion", SiFramer, "text-pink-600", "bg-pink-50", "border-pink-200"],
+//     ],
+//   },
+//   {
+//     title: "Backend Development",
+//     shortTitle: "Backend",
+//     icon: FaNodeJs,
+//     color: "text-emerald-500",
+//     activeColor: "border-emerald-300 bg-emerald-50",
+//     badge: "bg-emerald-100 text-emerald-700",
+//     skills: [
+//       ["Node.js", FaNodeJs, "text-green-600", "bg-green-50", "border-green-200"],
+//       ["Express.js", SiExpress, "text-slate-700", "bg-slate-100", "border-slate-200"],
+//       ["Python", SiPython, "text-blue-600", "bg-blue-50", "border-blue-200"],
+//       ["REST APIs", TbApi, "text-indigo-600", "bg-indigo-50", "border-indigo-200"],
+//       ["JWT", SiJsonwebtokens, "text-purple-600", "bg-purple-50", "border-purple-200"],
+//       ["Firebase", SiFirebase, "text-orange-500", "bg-orange-50", "border-orange-200"],
+//     ],
+//   },
+//   {
+//     title: "Generative AI & RAG",
+//     shortTitle: "AI & RAG",
+//     icon: FaBrain,
+//     color: "text-violet-600",
+//     activeColor: "border-violet-300 bg-violet-50",
+//     badge: "bg-violet-100 text-violet-700",
+//     skills: [
+//       ["Generative AI", FaBrain, "text-violet-600", "bg-violet-50", "border-violet-200"],
+//       ["OpenAI", FaRobot, "text-emerald-600", "bg-emerald-50", "border-emerald-200"],
+//       ["Gemini", FaGoogle, "text-blue-600", "bg-blue-50", "border-blue-200"],
+//       ["Ollama", FaRobot, "text-orange-600", "bg-orange-50", "border-orange-200"],
+//       ["Tokenization", TbApi, "text-pink-600", "bg-pink-50", "border-pink-200"],
+//       ["RAG", TbApi, "text-indigo-600", "bg-indigo-50", "border-indigo-200"],
+//       ["Vector DBs", TbApi, "text-teal-600", "bg-teal-50", "border-teal-200"],
+//       ["Pinecone", TbApi, "text-green-600", "bg-green-50", "border-green-200"],
+//     ],
+//   },
+//   {
+//     title: "Databases",
+//     shortTitle: "Databases",
+//     icon: SiMongodb,
+//     color: "text-green-600",
+//     activeColor: "border-green-300 bg-green-50",
+//     badge: "bg-green-100 text-green-700",
+//     skills: [
+//       ["MongoDB", SiMongodb, "text-green-600", "bg-green-50", "border-green-200"],
+//       ["PostgreSQL", SiPostgresql, "text-blue-600", "bg-blue-50", "border-blue-200"],
+//       ["SQL", TbApi, "text-indigo-600", "bg-indigo-50", "border-indigo-200"],
+//     ],
+//   },
+//   {
+//     title: "Tools & Productivity",
+//     shortTitle: "Tools",
+//     icon: FaGitAlt,
+//     color: "text-orange-500",
+//     activeColor: "border-orange-300 bg-orange-50",
+//     badge: "bg-orange-100 text-orange-700",
+//     skills: [
+//       ["Git", FaGitAlt, "text-orange-600", "bg-orange-50", "border-orange-200"],
+//       ["Postman", SiPostman, "text-orange-600", "bg-orange-50", "border-orange-200"],
+//       ["MS Word", FaMicrosoft, "text-blue-600", "bg-blue-50", "border-blue-200"],
+//       ["MS Excel", FaMicrosoft, "text-green-600", "bg-green-50", "border-green-200"],
+//       ["Google Sheets", FaGoogle, "text-green-600", "bg-green-50", "border-green-200"],
+//       ["Gmail", SiGmail, "text-red-500", "bg-red-50", "border-red-200"],
+//     ],
+//   },
+// ];
+
+// function SkillCard({ group, active, onClick }) {
+//   const GroupIcon = group.icon;
+
+//   return (
+//     <button
+//       type="button"
+//       onClick={onClick}
+//       className={`w-full rounded-2xl border p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
+//         active
+//           ? `${group.activeColor} border-2 shadow-md`
+//           : "border-blue-100 bg-white hover:border-blue-200"
+//       }`}
+//     >
+//       <div className="mb-3 flex items-center gap-3">
+//         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-100 bg-white shadow-sm">
+//           <GroupIcon className={`text-xl ${group.color}`} />
+//         </div>
+
+//         <div className="min-w-0 flex-1">
+//           <h3 className="text-sm font-bold text-slate-800 sm:text-base">
+//             {group.title}
+//           </h3>
+//           <p className="mt-0.5 text-[11px] text-slate-500">
+//             {active ? "Currently exploring" : "Click to rotate these skills"}
+//           </p>
+//         </div>
+
+//         <span
+//           className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold ${group.badge}`}
+//         >
+//           {group.skills.length} Skills
+//         </span>
+//       </div>
+
+//       <div className="flex flex-wrap gap-2">
+//         {group.skills.map(([name, Icon, iconColor, bgColor, borderColor]) => (
+//           <span
+//             key={name}
+//             className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-2 text-[11px] font-semibold text-slate-700 transition-colors ${bgColor} ${borderColor}`}
+//           >
+//             <Icon className={`shrink-0 text-sm ${iconColor}`} />
+//             {name}
+//           </span>
+//         ))}
+//       </div>
+//     </button>
+//   );
+// }
+
+// function SkillsOrbit({ group }) {
+//   const count = group.skills.length;
+//   const GroupIcon = group.icon;
+
+//   return (
+//     <div className="relative mx-auto flex aspect-square w-full max-w-[430px] items-center justify-center">
+//       {/* Orbit rings */}
+//       <div className="pointer-events-none absolute h-[88%] w-[88%] rounded-full border border-blue-200" />
+//       <div className="pointer-events-none absolute h-[64%] w-[64%] rounded-full border border-cyan-300" />
+//       <div className="pointer-events-none absolute h-[40%] w-[40%] rounded-full border border-indigo-200" />
+
+//       {/* Each category's skill icons */}
+//       <div key={group.title} className="skills-orbit absolute inset-0">
+//         {group.skills.map((skill, index) => {
+//           const [name, Icon, iconColor, bgColor, borderColor] = skill;
+
+//           return (
+//             <div
+//               key={name}
+//               className="skills-orbit-position"
+//               style={{
+//                 "--angle": `${(360 / count) * index}deg`,
+//               }}
+//             >
+//               <div className="skills-orbit-counter">
+//                 <div
+//                   title={name}
+//                   className={`flex h-10 w-10 items-center justify-center rounded-xl border shadow-md sm:h-12 sm:w-12 ${bgColor} ${borderColor}`}
+//                 >
+//                   <Icon className={`text-xl sm:text-2xl ${iconColor}`} />
+//                 </div>
+
+//                 <span className="max-w-[84px] rounded-md bg-white/95 px-1.5 py-1 text-center text-[9px] font-bold leading-tight text-slate-700 shadow-sm sm:max-w-[100px] sm:text-[10px]">
+//                   {name}
+//                 </span>
+//               </div>
+//             </div>
+//           );
+//         })}
+//       </div>
+
+//       {/* Center globe */}
+//       <div className="relative z-10 flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-indigo-400 bg-gradient-to-br from-blue-500 to-violet-500 text-center text-white shadow-[0_0_40px_rgba(79,70,229,0.3)] sm:h-36 sm:w-36">
+//         <GroupIcon className="mb-2 text-3xl" />
+
+//         <span className="max-w-[112px] px-2 text-sm font-extrabold">
+//           {group.shortTitle || group.title}
+//         </span>
+
+//         <span className="mt-1 text-[10px]">
+//           {count} Skills
+//         </span>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default function Skills() {
+//   const [selectedIndex, setSelectedIndex] = useState(0);
+//   const selectedGroup = skillGroups[selectedIndex];
+
+//   return (
+//     <section
+//       id="skills"
+//       className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 px-4 py-16 sm:px-6 lg:px-10"
+//     >
+//       <div className="mx-auto max-w-7xl">
+//         <div className="mb-10 text-center">
+//           <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-cyan-600">
+//             Explore My Stack
+//           </p>
+
+//           <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
+//             Technical Skills
+//           </h2>
+
+//           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-600">
+//             Technologies and tools I use to build modern web applications and
+//             AI-powered experiences.
+//           </p>
+//         </div>
+
+//         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+//           {/* Skill categories */}
+//           <div className="flex flex-col gap-3">
+//             {skillGroups.map((group, index) => (
+//               <SkillCard
+//                 key={group.title}
+//                 group={group}
+//                 active={selectedIndex === index}
+//                 onClick={() => setSelectedIndex(index)}
+//               />
+//             ))}
+//           </div>
+
+//           {/* Animated orbit */}
+//           <div className="min-w-0 lg:sticky lg:top-24">
+//             <div className="mb-5 text-center">
+//               <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan-600">
+//                 Explore My Stack
+//               </p>
+
+//               <h3 className="mt-2 text-xl font-extrabold text-slate-900 sm:text-2xl">
+//                 {selectedGroup.title}
+//               </h3>
+
+//               <p className="mt-1 text-xs text-slate-500">
+//                 {selectedGroup.skills.length} skills orbiting the globe
+//               </p>
+//             </div>
+
+//             <SkillsOrbit group={selectedGroup} />
+//           </div>
+//         </div>
+//       </div>
+
+//       <style>{`
+//         .skills-orbit {
+//           border-radius: 50%;
+//           transform-origin: center center;
+//           animation: skills-earth-rotation 18s linear infinite;
+//           will-change: transform;
+//         }
+
+//         .skills-orbit-position {
+//           position: absolute;
+//           inset: 0;
+//           transform: rotate(var(--angle));
+//         }
+
+//         .skills-orbit-counter {
+//           position: absolute;
+//           top: 6%;
+//           left: 50%;
+//           display: flex;
+//           flex-direction: column;
+//           align-items: center;
+//           gap: 3px;
+//           transform: translate(-50%, -50%);
+//           animation: skills-icon-counter-rotation 18s linear infinite;
+//           will-change: transform;
+//         }
+
+//         @keyframes skills-earth-rotation {
+//           from {
+//             transform: rotate(0deg);
+//           }
+//           to {
+//             transform: rotate(360deg);
+//           }
+//         }
+
+//         @keyframes skills-icon-counter-rotation {
+//           from {
+//             transform: translate(-50%, -50%) rotate(0deg);
+//           }
+//           to {
+//             transform: translate(-50%, -50%) rotate(-360deg);
+//           }
+//         }
+
+//         @media (prefers-reduced-motion: reduce) {
+//           .skills-orbit,
+//           .skills-orbit-counter {
+//             animation-duration: 60s;
+//           }
+//         }
+//       `}</style>
+//     </section>
+//   );
+// }
 
 
 
