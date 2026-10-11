@@ -8,6 +8,9 @@ const Contact = () => {
       value: "thepritamverma@gmail.com",
       link: "mailto:thepritamverma@gmail.com",
       description: "Let's talk about your ideas",
+      color: "text-blue-600",
+      bg: "bg-blue-50",
+      border: "group-hover:border-blue-300",
     },
     {
       icon: Phone,
@@ -15,6 +18,9 @@ const Contact = () => {
       value: "+91 8209318181",
       link: "tel:+918209318181",
       description: "Let's have a conversation",
+      color: "text-cyan-600",
+      bg: "bg-cyan-50",
+      border: "group-hover:border-cyan-300",
     },
     {
       icon: MapPin,
@@ -22,146 +28,135 @@ const Contact = () => {
       value: "Alwar, Rajasthan, India",
       link: null,
       description: "Based in India",
+      color: "text-indigo-600",
+      bg: "bg-indigo-50",
+      border: "group-hover:border-indigo-300",
     },
   ];
 
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-24"
+      className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-16 sm:py-20"
     >
-      {/* Decorative Background */}
-      <div className="pointer-events-none absolute -left-24 top-24 h-64 w-64 rounded-full bg-blue-200/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-20 h-64 w-64 rounded-full bg-blue-200/20 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-cyan-200/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-
-        {/* Section Heading */}
-        <div className="mb-16 text-center">
-          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-sm font-semibold tracking-wider text-blue-700 shadow-sm">
-            <Sparkles size={15} />
-            LET'S CONNECT
-          </span>
-
-          <h2 className="mb-5 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            Get In{" "}
-            <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              Touch
+        {/* Modern split heading */}
+        <div className="mb-10 grid items-end gap-5 md:grid-cols-2 md:gap-10">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3 py-1.5 text-xs font-bold tracking-wider text-blue-700 shadow-sm">
+              <Sparkles size={14} />
+              LET'S CONNECT
             </span>
-          </h2>
 
-          <div className="mx-auto mb-6 h-1.5 w-20 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500" />
+            <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+              Get In
+              <br />
+              <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Touch.
+              </span>
+            </h2>
+          </div>
 
-          <p className="mx-auto max-w-2xl text-base leading-8 text-gray-600 sm:text-lg">
+          <p className="max-w-md text-sm leading-7 text-gray-600 md:justify-self-end md:text-base">
             Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
         </div>
 
-        {/* Main Contact Panel */}
-        <div className="overflow-hidden rounded-3xl border border-white bg-white/70 shadow-xl shadow-blue-100/50 backdrop-blur-sm">
+        {/* Compact contact panel */}
+        <div className="overflow-hidden rounded-3xl border border-white/80 bg-white/60 shadow-xl shadow-blue-100/40 backdrop-blur-sm">
+          {/* Gradient introduction */}
+          <div className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-cyan-600 px-6 py-7 text-white sm:px-9 sm:py-9">
+            <div className="pointer-events-none absolute -right-8 -top-16 h-52 w-52 rounded-full border border-white/15" />
+            <div className="pointer-events-none absolute -right-1 -top-9 h-36 w-36 rounded-full border border-white/15" />
 
-          {/* Intro Banner */}
-          <div className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-cyan-600 px-6 py-10 text-white sm:px-10 sm:py-12 lg:px-14">
-            <div className="pointer-events-none absolute -right-10 -top-20 h-64 w-64 rounded-full border border-white/10" />
-            <div className="pointer-events-none absolute -right-2 -top-12 h-48 w-48 rounded-full border border-white/10" />
+            <div className="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+              <div className="max-w-xl">
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-cyan-100">
+                  Have something in mind?
+                </p>
 
-            <div className="relative max-w-3xl">
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/15 shadow-inner">
-                <Mail size={28} />
+                <h3 className="text-2xl font-bold sm:text-3xl">
+                  Let's work together.
+                </h3>
+
+                <p className="mt-2 text-sm leading-6 text-blue-50">
+                  Let's create something amazing together!
+                </p>
               </div>
-
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-100">
-                Have something in mind?
-              </p>
-
-              <h3 className="mb-4 text-3xl font-bold leading-tight sm:text-4xl">
-                Let's work together.
-              </h3>
-
-              <p className="max-w-2xl text-base leading-8 text-blue-50 sm:text-lg">
-                Always open to discussing new projects, creative ideas, or
-                opportunities to be part of your vision. Drop me a message
-                and let's create something amazing together!
-              </p>
 
               <a
                 href="mailto:thepritamverma@gmail.com"
-                className="mt-7 inline-flex items-center gap-3 rounded-xl bg-white px-6 py-3.5 font-bold text-blue-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-xl bg-white px-5 py-3 text-sm font-bold text-blue-700 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:self-center"
               >
                 Let's Talk
-                <ArrowUpRight size={19} />
+                <ArrowUpRight size={17} />
               </a>
             </div>
           </div>
 
-          {/* Contact Details */}
-          <div className="grid grid-cols-1 gap-5 p-6 sm:p-8 md:grid-cols-3 lg:p-10">
+          {/* Contact cards */}
+          <div className="grid gap-3 p-4 sm:grid-cols-2 sm:p-6 lg:grid-cols-3">
             {contactInfo.map((info) => {
               const Icon = info.icon;
 
-              const cardContent = (
-                <>
-                  <div className="mb-6 flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 text-blue-600 transition-all duration-300 group-hover:from-blue-600 group-hover:to-cyan-500 group-hover:text-white">
-                      <Icon size={23} />
-                    </div>
-
-                    {info.link && (
-                      <ArrowUpRight
-                        size={19}
-                        className="text-gray-400 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-600"
-                      />
-                    )}
+              const content = (
+                <div className="flex items-start gap-3.5">
+                  <div
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${info.bg} ${info.color} transition-transform duration-300 group-hover:scale-110`}
+                  >
+                    <Icon size={21} />
                   </div>
 
-                  <p className="mb-2 text-xs font-bold tracking-[0.15em] text-blue-600">
-                    {info.title}
-                  </p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] font-bold tracking-[0.16em] text-gray-500">
+                      {info.title}
+                    </p>
 
-                  <p className="mb-2 break-words text-base font-bold text-gray-900 transition-colors group-hover:text-blue-700 sm:text-lg">
-                    {info.value}
-                  </p>
+                    <p className="mt-1 break-words text-sm font-bold text-gray-900 transition-colors group-hover:text-blue-700">
+                      {info.value}
+                    </p>
 
-                  <p className="text-sm leading-relaxed text-gray-500">
-                    {info.description}
-                  </p>
-                </>
+                    <p className="mt-1 text-xs leading-5 text-gray-500">
+                      {info.description}
+                    </p>
+                  </div>
+
+                  {info.link && (
+                    <ArrowUpRight
+                      size={16}
+                      className="shrink-0 text-gray-400 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-600"
+                    />
+                  )}
+                </div>
               );
 
-              const cardClass =
-                "group block min-w-0 rounded-2xl border border-blue-100/80 bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-200 hover:shadow-xl hover:shadow-blue-100/60 sm:p-6";
+              const className = `group flex min-w-0 items-center rounded-2xl border border-blue-100/80 bg-white/90 p-4 transition-all duration-300 hover:-translate-y-1 ${info.border} hover:shadow-md`;
 
               return info.link ? (
                 <a
                   key={info.title}
                   href={info.link}
-                  className={cardClass}
+                  className={className}
                 >
-                  {cardContent}
+                  {content}
                 </a>
               ) : (
-                <div key={info.title} className={cardClass}>
-                  {cardContent}
+                <div key={info.title} className={className}>
+                  {content}
                 </div>
               );
             })}
           </div>
         </div>
-
-        {/* Closing Text */}
-        <p className="mt-10 text-center text-sm font-medium text-gray-500">
-          Have an idea? <span className="text-blue-700">I'd love to hear about it.</span>
-        </p>
       </div>
     </section>
   );
 };
 
 export default Contact;
-
-
-
-
 
 
 
