@@ -1,3 +1,19 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import { Github, Linkedin, Mail } from 'lucide-react';
 // import mainImage from '../assest/PritamProfile.jpeg'; // ✅ Make sure this path is correct
 
@@ -603,7 +619,7 @@
 
 
 
-
+// =======================================
 
 
 
@@ -1161,9 +1177,7 @@ export default Hero;
 
 
 
-
-
-
+// ====================================================================
 
 
 

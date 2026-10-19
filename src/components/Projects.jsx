@@ -19,8 +19,28 @@ import SyncUpimage from "../assest/SyncUp-image.png";
 import DocDeskImage from "../assest/DocDeskImage.png";
 import BlogsImage from "../assest/blogsHub.png";
 import crmDashboardImg from "../assest/crmDashboardImg.png";
+import AutoKeyEnvImage from "../assest/autokey-env.png"
 
 const projects = [
+  {
+  title: "AutoKey Env",
+  category: "Developer Tools / npm Package",
+  description:
+    " Built My Own npm Package — autokey-env,lightweight Node.js utility for loading .env files, validating required environment variables, and accessing configuration through a simple API.",
+  image: AutoKeyEnvImage,
+  tags: [
+    "JavaScript",
+    "Node.js",
+    "npm",
+    "Environment Variables",
+    "CommonJS",
+    "ES Modules",
+    "TypeScript",
+    "Automated Testing",
+  ],
+  liveLink: "https://www.npmjs.com/package/autokey-env",
+  githubLink: "https://github.com/PRITAMALWAR/autokey-env",
+},
   {
     title: "SyncUp",
     category: "Real-Time Communication",
